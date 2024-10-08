@@ -1,0 +1,339 @@
+
+
+<div class="content">
+  <article class="article__Article-sc-dsqu2p-0 docs__Article-sc-y8vzk-1 iaCngk kBKmjO">
+      <h1>Documentation</h1>
+      <h2 id="introduction">Introduction</h2>
+      <p>This documentation will help you get familiar with the resources of the 
+          
+          <strong>Rick and Morty API</strong> and show you how to make different queries, so that you can get the most out of it.
+      </p>
+    
+      <h3 id="rest">REST</h3>
+      <p>
+          <strong>Base url:</strong>
+          <a href="https://rickandmortyapi.com/api" target="_blank" rel="nofollow noopener noreferrer">https://rickandmortyapi.com/api</a>
+      </p>
+      <p>The base url contains information about all available API&#x27;s resources.
+All requests are 
+          
+          <code class="language-text">GET</code> requests and go over
+          <code class="language-text">https</code>. All responses will return data in
+          <code class="language-text">json</code>.
+      </p>
+      <div class="restQuery__Wrapper-sc-tkzubw-0 bkrFKX gatsby-highlight" data-language="shell">
+          <pre class="language-shell">
+              <code class="language-shell">
+                  <span class="endpoint">
+                      <span class="request">GET </span>https://rickandmortyapi.com/api
+                  </span>
+              </code>
+          </pre>
+      </div>
+      <div class="gatsby-highlight" data-language="json">
+        
+      <br>
+      <br>
+                <div class="input-group mb-4">
+                    <button class="btn btn-outline-primary" (click)="getCaracter()" type="button" >https://rickandmortyapi.com/api/character</button> 
+                    <br><br>
+                    <button class="btn btn-outline-primary" (click)="getEpisodes()" type="button" >https://rickandmortyapi.com/api/episode</button> 
+                    <br><br>
+                    <button class="btn btn-outline-primary" (click)="getLocation()" type="button" >https://rickandmortyapi.com/api/location</button> 
+                </div>
+
+            
+                <br><br><br>
+
+<div class="row ">
+
+  <span class='col-12' *ngIf="dataCaracter"  >
+
+    <table  class='table' align="center">
+      <thead>
+        <th>name</th>
+        <th>species</th>
+        <th>gender</th>
+        <th>created</th>
+        <th>url</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let datos of dataCaracter">
+          <td>{{datos.name}}</td>
+          <td>{{datos.species}}</td>
+          <td>{{datos.gender}}</td>
+          <td>{{datos.created}}</td>
+          <td>{{datos.url}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </span>
+  <div class='col-12'>
+
+    <h1 *ngIf="!dataCaracter"  >No hay datos caracteres cargados</h1>
+    </div>
+  
+</div>
+
+<div class="row col-6">
+
+  <span class='col-6' *ngIf="dataEpisode"  >
+
+    <table  class='table' >
+      <thead>
+        <th>name</th>
+        <th>type</th>
+        <th>dimension</th>
+        <th>url</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let datos of dataEpisode">
+          <td>{{datos.name}}</td>
+          <td>{{datos.type}}</td>
+          <td>{{datos.dimension}}</td>
+          <td>{{datos.url}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </span>
+  <div class='col-6'>
+
+    <h1 *ngIf="!dataEpisode">No hay location cargados</h1>
+    </div>
+  
+</div>
+
+<div class="row">
+
+  <span class='col-12' *ngIf="dataLocation"  >
+
+    <table  class='table' >
+      <thead>
+        <th>name</th>
+        <th>type</th>
+        <th>dimension</th>
+        <th>url</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let datos of dataLocation">
+          <td>{{datos.name}}</td>
+          <td>{{datos.type}}</td>
+          <td>{{datos.dimension}}</td>
+          <td>{{datos.url}}</td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </span>
+  <div class='col-12'>
+
+    <h1 *ngIf="!dataLocation">No hay location cargados</h1>
+    </div>
+  
+</div>
+             
+
+      <p>There are currently three available resources:</p>
+      <ul>
+          <li>
+              <a href="#character">Character</a>: used to get all the characters.
+          </li>
+          <li>
+              <a href="#location">Location</a>: used to get all the locations.
+          </li>
+          <li>
+              <a href="#episode">Episode</a>: used to get all the episodes.
+          </li>
+      </ul>
+    </div>
+
+
+
+
+    <h3 id="info-and-pagination">Info and Pagination</h3>
+    <p>The API will automatically paginate the responses. You will receive up to 20 documents per page.</p>
+    <p>Each resource contains an 
+        
+        <code class="language-text">info</code> object with information about the response.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>count</td>
+                <td>int</td>
+                <td>The length of the response</td>
+            </tr>
+            <tr>
+                <td>pages</td>
+                <td>int</td>
+                <td>The amount of pages</td>
+            </tr>
+            <tr>
+                <td>next</td>
+                <td>string (url)</td>
+                <td>Link to the next page (if it exists)</td>
+            </tr>
+            <tr>
+                <td>prev</td>
+                <td>string (url)</td>
+                <td>Link to the previous page (if it exists)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="restQuery__Wrapper-sc-tkzubw-0 bkrFKX gatsby-highlight" data-language="shell">
+        <pre class="language-shell">
+            <code class="language-shell">
+                <span class="endpoint">
+                    <span class="request">GET </span>https://rickandmortyapi.com/api
+                </span>/character
+            </code>
+        </pre>
+    </div>
+    <div class="gatsby-highlight" data-language="json">
+    
+        <pre class="language-json">
+            <code class="language-json">
+              <label>Select a caracter: </label> <button type="button" class="btn btn-outline-primary" (click)="getCaracterAll()">BUSCAR </button>
+              <select name="types" id="#">
+                <option 
+                  selected="selected" 
+                  value="one"
+                  *ngFor="let dato of caracterUrlAll">
+                    {{ dato.episode }} 
+                </option>
+              </select>
+
+            </code>
+        </pre>
+    </div>
+    <p>You can access different pages with the 
+        
+        <code class="language-text">page</code> parameter. If you don&#x27;t specify any page, the first page will be shown. For example, in order to access page 2, add
+        <code class="language-text">?page=2</code> to the end of the URL.
+    </p>
+    <div class="restQuery__Wrapper-sc-tkzubw-0 bkrFKX gatsby-highlight" data-language="shell">
+        <pre class="language-shell">
+            <code class="language-shell">
+                <span class="endpoint">
+                    <span class="request">GET </span>https://rickandmortyapi.com/api
+                </span>/character/?page=19
+            </code>
+        </pre>
+    </div>
+    <div class="gatsby-highlight" data-language="json">
+        <pre class="language-json">
+            <code class="language-json">
+               
+            </code>
+        </pre>
+    </div>
+    <h3 id="javascript-client">JavaScript client</h3>
+    <p>The Rick and Morty API JavaScript client is a 
+        
+        <a href="https://javascript.rickandmortyapi.com/modules/interfaces.html" target="_blank" rel="nofollow noopener noreferrer">fully typed</a> client that gives you access to the API and its features.
+    </p>
+    <ul>
+        <li>
+            <a href="https://github.com/afuh/rick-and-morty-api-node" target="_blank" rel="nofollow noopener noreferrer">View on GitHub</a>
+        </li>
+        <li>
+            <a href="https://javascript.rickandmortyapi.com" target="_blank" rel="nofollow noopener noreferrer">Client reference</a>
+        </li>
+    </ul>
+    <h2 id="character">Character</h2>
+    <p>There is a total of 
+        
+        <code class="language-text">826</code> characters sorted by id.
+    </p>
+    <h3 id="character-schema">Character schema</h3>
+
+
+    <table>
+        <thead>
+            <tr>
+                <th>Key</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>id</td>
+                <td>int</td>
+                <td>The id of the character.</td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>string</td>
+                <td>The name of the character.</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>string</td>
+                <td>The status of the character (&#x27;Alive&#x27;, &#x27;Dead&#x27; or &#x27;unknown&#x27;).</td>
+            </tr>
+            <tr>
+                <td>species</td>
+                <td>string</td>
+                <td>The species of the character.</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>string</td>
+                <td>The type or subspecies of the character.</td>
+            </tr>
+            <tr>
+                <td>gender</td>
+                <td>string</td>
+                <td>The gender of the character (&#x27;Female&#x27;, &#x27;Male&#x27;, &#x27;Genderless&#x27; or &#x27;unknown&#x27;).</td>
+            </tr>
+            <tr>
+                <td>origin</td>
+                <td>object</td>
+                <td>Name and link to the character&#x27;s origin location.</td>
+            </tr>
+            <tr>
+                <td>location</td>
+                <td>object</td>
+                <td>Name and link to the character&#x27;s last known location endpoint.</td>
+            </tr>
+            <tr>
+                <td>image</td>
+                <td>string (url)</td>
+                <td>Link to the character&#x27;s image. All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.</td>
+            </tr>
+            <tr>
+                <td>episode</td>
+                <td>array (urls)</td>
+                <td>List of episodes in which this character appeared.</td>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td>string (url)</td>
+                <td>Link to the character&#x27;s own URL endpoint.</td>
+            </tr>
+            <tr>
+                <td>created</td>
+                <td>string</td>
+                <td>Time at which the character was created in the database.</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+  </article>
+</div>
+<router-outlet />
